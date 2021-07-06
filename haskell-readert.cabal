@@ -21,14 +21,55 @@ maintainer:         yuuki@protonmail.com
 -- category:
 extra-source-files: CHANGELOG.md
 
+common shared-props
+  ghc-options:        -Wall
+  default-language:   Haskell2010
+  default-extensions:
+    DeriveGeneric
+    DerivingVia
+    LambdaCase
+    FlexibleInstances
+    FlexibleContexts
+    NamedFieldPuns
+    OverloadedStrings
+    QuasiQuotes
+    RecordWildCards
+    ScopedTypeVariables
+
+library
+  import:         shared-props
+  hs-source-dirs: lib
+  exposed-modules:
+    Lib
+  build-depends:
+    , base          ^>=4.14.1.0
+    , mtl
+    , safe-exceptions
+    , transformers
+    , text
+
 executable haskell-readert
-    main-is:          Main.hs
+  main-is:        Main.hs
 
-    -- Modules included in this executable, other than Main.
-    -- other-modules:
+  -- Modules included in this executable, other than Main.
+  -- other-modules:
 
-    -- LANGUAGE extensions used by modules in this package.
-    -- other-extensions:
-    build-depends:    base ^>=4.14.1.0
-    hs-source-dirs:   app
-    default-language: Haskell2010
+  -- LANGUAGE extensions used by modules in this package.
+  -- other-extensions:
+  build-depends:
+    , base             ^>=4.14.1.0
+    , haskell-readert
+
+  hs-source-dirs: app
+
+test-suite tests
+  import:         shared-props
+  main-is:        Main.hs
+  type:           exitcode-stdio-1.0
+  hs-source-dirs: tests
+  build-depends:
+    , base           ^>=4.14.1.0
+    , haskell-readert
+    , tasty
+    , tasty-hunit
+    , text
