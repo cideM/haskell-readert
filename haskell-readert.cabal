@@ -44,6 +44,7 @@ library
   build-depends:
     , base          ^>=4.14.1.0
     , mtl
+    , katip
     , safe-exceptions
     , transformers
     , text
@@ -73,3 +74,9 @@ test-suite tests
     , tasty
     , tasty-hunit
     , text
+    , katip
+    , mtl
+    , transformers
+    , safe-exceptions
+    , stm
+    , aeson

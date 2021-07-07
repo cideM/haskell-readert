@@ -1,4 +1,5 @@
-{ mkDerivation, base, lib, mtl, safe-exceptions, text, transformers
+{ mkDerivation, aeson, base, katip, lib, mtl, safe-exceptions, stm
+, tasty, tasty-hunit, text, transformers
 }:
 mkDerivation {
   pname = "haskell-readert";
@@ -7,10 +8,13 @@ mkDerivation {
   isLibrary = true;
   isExecutable = true;
   libraryHaskellDepends = [
-    base mtl safe-exceptions text transformers
+    base katip mtl safe-exceptions text transformers
   ];
   executableHaskellDepends = [ base ];
-  testHaskellDepends = [ base ];
+  testHaskellDepends = [
+    aeson base katip mtl safe-exceptions stm tasty tasty-hunit text
+    transformers
+  ];
   license = "unknown";
   hydraPlatforms = lib.platforms.none;
 }
